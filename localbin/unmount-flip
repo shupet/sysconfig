@@ -1,9 +1,0 @@
-#!/bin/bash
-
-UNMOUNT_PATH="/home/legion/mnt/flip"
-
-echo ""
-
-fusermount -u $UNMOUNT_PATH
-
-
