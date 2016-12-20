@@ -1,0 +1,45 @@
+[global_config]
+  title_inactive_bg_color = "#757575"
+  title_transmit_bg_color = "#393f3f"
+[keybindings]
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = <Alt>0
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = e4710e54-f5e3-422c-ae81-44cbe0973b15
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 38:65
+      size = 735, 474
+      title = shupet@cord1003-pc1: ~
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = e4710e54-f5e3-422c-ae81-44cbe0973b15
+[plugins]
+[profiles]
+  [[default]]
+    allow_bold = False
+    background_color = "#292929"
+    background_image = None
+    cursor_color = "#ffffff"
+    font = Source Code Pro 11
+    foreground_color = "#ffffff"
+    login_shell = True
+    update_records = False
+    use_system_font = False

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sshfs shupet@os-class.engr.oregonstate.edu:/scratch/fall2015/cs444-66/ /home/legion/mnt/flip

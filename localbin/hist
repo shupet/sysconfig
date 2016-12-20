@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -lt "1" ]
+then
+		echo "ERROR: Requires a command line argument"
+		exit 1
+fi
+
+#HISTFILE=~/.bash_history
+#set -o history
+
+cat ${HOME}/.bash_history | grep --color=auto $1

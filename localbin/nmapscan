@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+	echo -e -n "For best results, run as root:" 1>&2
+	echo -e "\t\033[0;31msudo nmap -sn 192.168.1.0/24 \033[0;37m\n\n"
+fi
+
+RANGE=$(ip addr list wlp3s0 | grep "inet " | awk '{print $2}')
+
+echo -e "Scanning range: \033[0;32m$RANGE\033[0;37m for connected hosts"
+
+nmap -sn $RANGE

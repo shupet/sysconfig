@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ps aux | grep -v root | grep --color=auto legion

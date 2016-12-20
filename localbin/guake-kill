@@ -1,0 +1,4 @@
+#!/bin/bash
+GPID=$(ps aux | grep 'python2 -m guake.main' | grep -v grep | awk '{print $2}')
+echo "Sending kill -9 to guake at $GPID"
+kill -9 $GPID

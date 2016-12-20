@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# OS Detection
+if [ "$(uname -a | awk '{print $1}')" == "Linux" ]; then
+	if [ -f /etc/redhat-release ]; then
+		# Centos
+		if [ "$(cat /etc/redhat-release | awk '{print $1}')" == "CentOS" ]; then
+			OS=$(cat /etc/redhat-release)
+		# Redhat
+		elif [ "$(cat /etc/redhat-release | awk '{print $1}')" == "Red" ]; then
+			OS=$(cat /etc/redhat-release | awk '{print $1, $2, $7 "." $10 }' | sed 's/)$//')
+		# Scientific Linux
+		elif [ "$(cat /etc/redhat-release | awk '{print $1}')" == "Scientific" ]; then
+			OS=$(cat /etc/redhat-release | awk '{print $1, $2, $4 }' | sed 's/)$//')
+		# Fedora
+		elif [ "$(cat /etc/redhat-release | awk '{print $1}')" == "Fedora" ]; then
+			OS=$(lsb_release -d | sed 's/DISTRIB_DESCRIPTION=//' | awk '{print $2,$4}')
+		# Pidora
+		elif [ "$(cat /etc/redhat-release | awk '{print $1}')" == "Pidora" ]; then
+			OS=$(lsb_release -d | sed 's/DISTRIB_DESCRIPTION=//' | awk '{print $2,$3}')
+		fi
+	#openSUSE
+	elif [ "$(lsb_release -d | sed 's/Description://' | awk '{print $1}')" == "openSUSE" ]; then
+		OS=$(lsb_release -d | sed 's/DISTRIB_DESCRIPTION=//' | awk '{print $2,$3}')
+	# Ubuntu releases
+	elif [ -f /etc/lsb-release ]; then
+		OS=$(lsb_release -d | sed 's/DISTRIB_DESCRIPTION=//' | awk '{print $2,$3}')
+	# Debian releases
+	elif [ -f /usr/bin/lsb_release ]; then
+		OS=$(lsb_release -d | sed 's/DISTRIB_DESCRIPTION=//' | awk '{print $2,$4,$5}')
+	# Amazon Linux
+	elif [ "$(cat /etc/system-release | awk '{print $1}')" ==  "Amazon" ]; then
+		OS=$(cat /etc/system-release | awk '{print $1, $2, $5}')
+	fi
+
+#MacOSX profile
+elif [ "$(uname -a | awk '{print $1}')" == "Darwin" ]; then
+	if [ $(system_profiler SPSoftwareDataType | grep "System Version:" | awk '{print $3}') == "Mac" ]; then
+		OS=$(system_profiler SPSoftwareDataType | grep "System Version:" | awk '{print $4,$5,$6}')
+	else
+		OS=$(system_profiler SPSoftwareDataType | grep "System Version:" | awk '{print $3,$4,$5}')
+	fi
+
+fi
+
+#bold reset default white red green yellow blue magenta cyan
+GREEN='\033[0;32m'
+RESET='\033[0;37m'
+
+echo -e ${GREEN}$OS${RESET}
